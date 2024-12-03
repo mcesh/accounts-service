@@ -1,0 +1,25 @@
+logging:
+  level:
+    com.daimler.dmd: DEBUG
+    #org.hibernate.type: TRACE
+    #org.hibernate.SQL: DEBUG
+
+spring:
+  application:
+    name: accounts-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5100/accountsdb
+    username: siya7
+    password: Welcome123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
