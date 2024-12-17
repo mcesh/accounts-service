@@ -3,18 +3,29 @@ version: '3.8'
 services:
   accounts-db:
     image: postgres:14-bullseye
-    container_name: accounts-postgres-db
+    container_name: accounts-db
     ports:
-      - "5100:5432"
+      - "5436:5432"
     environment:
       POSTGRES_DB: accountsdb
       POSTGRES_USER: siya7
-      POSTGRES_PASSWORD: Welcome123
+      POSTGRES_PASSWORD: Welcome231
     volumes:
-      - ./pgdata:/var/lib/postgresql/accounts-data
-    networks:
-      - accounts-db-network
+      - ./pgdata:/var/lib/postgresql/accounts-data-new
 
-networks:
-  accounts-db-network:
-    driver: bridge
+  accounts-service:
+    image: siya7/accounts:1
+    build:
+      context: .
+    container_name: accounts-service
+    ports:
+      - "8084:8080" # Map container port 8080 to host port 8084
+    environment:
+      - POSTGRES_USER=siya7
+      - POSTGRES_PASSWORD=Welcome231
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://accounts-db:5432/accountsdb
+      - SPRING_DATASOURCE_USERNAME=siya7
+      - SPRING_DATASOURCE_PASSWORD=Welcome231
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - accounts-db
