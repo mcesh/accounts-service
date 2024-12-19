@@ -14,7 +14,7 @@ services:
       - ./pgdata:/var/lib/postgresql/accounts-data-new
 
   accounts-service:
-    image: siya7/accounts:1
+    image: siya7/accounts:3
     build:
       context: .
     container_name: accounts-service
