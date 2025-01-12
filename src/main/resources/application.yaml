@@ -1,9 +1,3 @@
-logging:
-  level:
-    com.daimler.dmd: DEBUG
-    #org.hibernate.type: TRACE
-    #org.hibernate.SQL: DEBUG
-
 spring:
   application:
     name: accounts
@@ -65,3 +59,9 @@ info:
     name: "accounts"
     description: "Eazy Bank Microservices"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      eazybytes:
+        accounts: DEBUG
